@@ -113,8 +113,8 @@ export class ThreeDComponent implements OnInit{
        (gltf: GLTF) => {
         // start
         // KEEP
-        console.log('SCNEE IS ', this.scane);
-        this.theModel = gltf.scene;         // <--- error
+        console.log('SCNEE IS ', gltf);
+        // this.theModel = gltf.scene;         // <--- error
         // this.theModel.traverse((o:any) => {
         //   if (o.isMesh) {
         //     o.castShadow = true;
@@ -123,9 +123,9 @@ export class ThreeDComponent implements OnInit{
         // });
         // Set the models initial scale
         // this.theModel.scale.set(0, 0, 0);
-        this.theModel.position.set(0,0,0)
+        // this.theModel.position.set(0,0,0)
 
-        console.log("traversing to model");
+        // console.log("traversing to model");
         // this.theModel.traverse((o:any) => {
 
         //   if (o.type === "Mesh") {
@@ -135,12 +135,12 @@ export class ThreeDComponent implements OnInit{
         //   }
 
         // });
-        console.log("traversing end");
+        // console.log("traversing end");
 
         // Add the model to the scene
         // console.log('model is', this.theModel);
 
-        this.scane.add(this.theModel);
+        this.scane.add(gltf.scene);
  
       }
       ,
