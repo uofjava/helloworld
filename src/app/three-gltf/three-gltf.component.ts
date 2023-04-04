@@ -20,7 +20,7 @@ export class ThreeGltfComponent implements OnInit{
   // 场景
   private scane = new THREE.Scene();
   // 坐标辅助线
-  private axesHelper = new THREE.AxesHelper(100);
+  private axesHelper = new THREE.AxesHelper(1000);
   // 摄像机
   private camer = new THREE.PerspectiveCamera(60,window.innerWidth/window.innerHeight,0.1,3000)
   // 光源
@@ -31,14 +31,13 @@ export class ThreeGltfComponent implements OnInit{
   private orbitControls = new OrbitControls(this.camer,this.renderer.domElement)
   // GUI
   private theModel:any
-  private path = 'src\assets\gltf\car\scene.gltf'
   // private modelPath = "../../"
   ngOnInit(): void {
     this.initCamer()
     this.initLight()
     this.initOrbitControl()
     this.initRender()
-    this.loadGLTF()
+    // this.loadGLTF()
     this.animate()
     fromEvent(window,"resize").subscribe((e) =>{
       this.renderer.setSize(window.innerWidth,window.innerHeight)
@@ -48,8 +47,6 @@ export class ThreeGltfComponent implements OnInit{
   }
   animate():void{
     requestAnimationFrame(this.animate.bind(this));
-
-
     this.renderer.render(this.scane, this.camer)
   }
   initRender():void{
@@ -76,22 +73,16 @@ export class ThreeGltfComponent implements OnInit{
     this.orbitControls.enableZoom = true
     this.orbitControls.enablePan = true
   }
-  loadGLTFBack(gltf:any):void{
-    console.log("loadGLTFBack")
-    // this.scane.add(gltf.scane)
-  }
   loadGLTF():void{
     this.loader =  new GLTFLoader();
 
     this.loader.load(
-      "../../assets/gltf/car/scene.bin",
-      function (this:ThreeGltfComponent,gltf: GLTF) {
-
+      "../../assets/gltf/car/scene.gltf",
+       (gltf: GLTF) => {
         // start
         // KEEP
-        console.log('SCNEE IS ', gltf.scene);
+        console.log('SCNEE IS ', this.scane);
         this.theModel = gltf.scene;         // <--- error
-        
         this.theModel.traverse((o:any) => {
           if (o.isMesh) {
             o.castShadow = true;
@@ -99,7 +90,7 @@ export class ThreeGltfComponent implements OnInit{
           }
         });
         // Set the models initial scale
-        this.theModel.scale.set(1, 1, 1);
+        // this.theModel.scale.set(0, 0, 0);
       
 
         console.log("traversing to model");
@@ -115,7 +106,7 @@ export class ThreeGltfComponent implements OnInit{
         console.log("traversing end");
 
         // Add the model to the scene
-        console.log('model is', this.theModel);
+        // console.log('model is', this.theModel);
 
         this.scane.add(this.theModel);
  

@@ -7,6 +7,7 @@ import { ProjectTestComponent } from './project-test/project-test.component';
 import { ThreeCadComponent } from './three-cad/three-cad.component';
 import { ThreeDComponent } from './three-d/three-d.component';
 import { ThreeGltfComponent } from './three-gltf/three-gltf.component';
+import { ThreeScaneComponent } from './three-scane/three-scane.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ThreeGltfComponent } from './three-gltf/three-gltf.component';
     ProjectTestComponent,
     ThreeCadComponent,
     ThreeDComponent,
-    ThreeGltfComponent
+    ThreeGltfComponent,
+    ThreeScaneComponent
   ],
   imports: [
     BrowserModule
